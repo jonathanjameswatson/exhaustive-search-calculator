@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title></title>
+  <title>Combinatorics calculator</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,24 +17,40 @@
 </head>
 
 <body>
-  [if lte IE 9]
+  <!--[if lte IE 9]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  [endif]
+  <![endif]-->
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-  <script src="js/plugins.js"></script>
+  <p>
+    Create a tuple X of
+    <select id="tuple-type">
+      <option value="A" disabled> k-tuples </option>
+      <option value="B"> k-permutations </option>
+      <option value="C" disabled> k-combinations </option>
+      <option value="E" disabled> k-multicombinations </option>
+    </select>
+    from the tuple below of length k:
+  </p>
+  Tuple = (<input type="text" id="tuple-1" value="1,2,2,3">)
+  k = (<input type="text" id="k-box" value="n" disabled>)
+
+  <p> For each Xn tuple,
+  <select>
+    <option value="A"> discard </option>
+    <option value="B" disabled> duplicate </option>
+  </select>
+  <div hidden> <input type="text" value="1" disabled> time/s. </div> </p>
+  <p> if <input type="text" id="command-box" value="NOT(Xn,1 = Xn,2 * Xn,3 - Xn,4)"> </p>
+
+  <p> <input type="checkbox" id="unique-box"> Remove non-unique Xn tuples </p>
+
+  <input type="button" value="Check" onclick="check()">
+
+  <p> Tuple X = </p>
+  <textarea readonly id="output-box"> </textarea>
+
+
   <script src="js/main.js"></script>
-
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 </body>
 
 </html>
