@@ -1,10 +1,11 @@
 const tuple1Box = document.getElementById("tuple-1");
 const tupleType = document.getElementById("tuple-type");
-const commandBox = document.getElementById("command-box");
+let steps = document.getElementsByClassName("step");
 const outputBox = document.getElementById("output-box");
 const uniqueBox = document.getElementById("unique-box");
 
 const keywords = {"AND":"&&", "OR":"||", "NOT":"!"};
+
 const unique = list => list.slice().sort((a, b) => a > b)
 .reduce((accumulator, currentValue) => {
   if (!arrayEquals(currentValue, accumulator.slice(-1)[0])) accumulator.push(currentValue);
@@ -28,24 +29,46 @@ const check = () => {
       break;
   }
 
-  let command1 = commandBox.value
-  .replace(/AND|OR|NOT/g, input => keywords[input])
-  .replace(/[^-+*/()\d\&|!=><(?:Xn,\d)]/g, "")
-  .replace(/=/g, "==");
-
   let y = [];
-  let command2 = ""
 
-  x.forEach((xN) => {
-    command2 = command1.replace(/Xn,\d+/g, input => (xN[input.match(/\d+/)[0]-1]));
-    if (!eval(command2)) y.push(xN);
+  Array.from(steps).forEach((step) => {
+    let command1 = step.getElementsByClassName("command-box")[0].value
+    .replace(/AND|OR|NOT/g, input => keywords[input])
+    .replace(/[^-+*/()\d\&|!=><(?:Xn,)]/g, "")
+    .replace(/=/g, "==");
+
+    x.forEach((xN) => {
+      let command2 = command1.replace(/Xn,\d+/g, input => (xN[input.match(/\d+/)[0]-1]));
+      if (!eval(command2)) {
+        y.push(xN);
+      }
+    });
+
+    x = y;
+    y = [];
   });
 
-  if (uniqueBox.checked) y = unique(y);
+  if (uniqueBox.checked) x = unique(x);
 
   outputBox.readonly = false;
-  outputBox.value = y.join("\n");
+  outputBox.value = x.join("\n");
   outputBox.readonly = true;
+};
+
+const add = (element) => {
+  let clone = element.parentElement.cloneNode(true);
+  element.parentElement.parentElement.appendChild(clone);
+  Array.from(document.getElementsByClassName("minus")).forEach((toShow) => {toShow.hidden = false;});
+};
+
+const minus = (element) => {
+  steps = document.getElementsByClassName("step");
+  if (steps.length > 1) {
+    element.parentElement.remove();
+    if (steps.length == 1) {
+      document.getElementsByClassName("minus")[0].hidden = true;
+    }
+  }
 };
 
 const permutator = (input) => {

@@ -97,10 +97,44 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+* {
+  box-sizing: border-box;
+}
 
+body {
+   margin: 1rem;
+   background-color: #ccc
+}
 
+p {
+  margin: 1rem;
+}
 
+.card {
+  background-color: white;
+  border-radius: 0.2rem;
+  padding: 1px 1px;
+  margin: 1rem auto;
+  max-width: 50rem;
+  width: 100%;
+}
 
+textarea {
+  width: calc(100% - 2rem);
+  margin: 1rem;
+  display: block;
+}
+
+.operator {
+  float: right;
+  width: 2rem;
+  margin: 1rem;
+  padding: 0;
+}
+
+.minus {
+  margin-left: 0;
+}
 
 
 
