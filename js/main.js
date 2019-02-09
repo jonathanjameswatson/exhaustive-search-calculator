@@ -1,10 +1,11 @@
 const tuple1Box = document.getElementById("tuple-1");
 const tupleType = document.getElementById("tuple-type");
-let steps = document.getElementsByClassName("step");
 const outputBox = document.getElementById("output-box");
 const uniqueBox = document.getElementById("unique-box");
+let steps = document.getElementsByClassName("step");
 
 const keywords = {"AND":"&&", "OR":"||", "NOT":"!"};
+
 
 const unique = list => list.slice().sort((a, b) => a > b)
 .reduce((accumulator, currentValue) => {
@@ -15,19 +16,8 @@ const arrayEquals = (a1, a2 = []) => a1.length == a2.length && a1.every((element
 
 const check = () => {
   let tuple1 = tuple1Box.value.replace(/\s/g, "").split(",");
-  let x = [];
-
-  switch (tupleType.value) {
-    case "A":
-      break;
-    case "B":
-      x = permutator(tuple1);
-      break;
-    case "C":
-      break;
-    case "D":
-      break;
-  }
+  let length = tuple1.length;
+  let x = [...G.clone[tupleType.value](tuple1)];
 
   let y = [];
 
@@ -69,24 +59,4 @@ const minus = (element) => {
       document.getElementsByClassName("minus")[0].hidden = true;
     }
   }
-};
-
-const permutator = (input) => {
-  let output = [];
-
-  const permute = (input2, permutation=[]) => {
-    if (input2.length == 0) {
-      output.push(permutation);
-    } else {
-      for (let i = 0; i < input2.length; i++) {
-        let copy = input2.slice();
-        let next = copy.splice(i, 1);
-        permute(copy.slice(), permutation.concat(next));
-     }
-   }
- };
-
- permute(input);
-
- return output;
 };

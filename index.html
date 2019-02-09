@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Combinatorics calculator</title>
+  <title>Exhaustive search calculator</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,15 +22,21 @@
   <![endif]-->
 
   <div class="card">
+      <p> Exhaustive search calculator </p>
+  </div>
+
+  <div class="card">
     <p>
-      Create a tuple X of
+      Create set X of
       <select id="tuple-type">
-        <option value="A" disabled> k-tuples </option>
-        <option value="B"> k-permutations </option>
-        <option value="C" disabled> k-combinations </option>
-        <option value="E" disabled> k-multicombinations </option>
+        <option value="A"> k-subsets </option>
+        <option value="B" disabled> k-multisets </option>
+        <option value="C"> subsets </option>
+        <option value="D"> k-permutations </option>
+        <option value="E"> k-tuples </option>
+        <option value="F"> permutations of the set of subsets </option>
       </select>
-      from the tuple
+      of the set
     </p>
     <textarea id="tuple-1"> 1,2,2,3 </textarea>
     <p>
@@ -62,7 +68,7 @@
   <div class="card">
     <p>
       <input type="checkbox" id="unique-box">
-      Remove non-unique Xn tuples
+      Remove non-unique Xn [BLANK]s
     </p>
     <p>
       <input type="button" value="Check" onclick="check()">
@@ -76,6 +82,7 @@
   </div>
 
   <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="js/vendor/generatorics.js"></script>
   <script src="js/main.js"></script>
 </body>
 
