@@ -6,7 +6,6 @@ let steps = document.getElementsByClassName("step");
 
 const keywords = {"AND":"&&", "OR":"||", "NOT":"!"};
 
-
 const unique = list => list.slice().sort((a, b) => a > b)
 .reduce((accumulator, currentValue) => {
   if (!arrayEquals(currentValue, accumulator.slice(-1)[0])) accumulator.push(currentValue);
@@ -40,9 +39,16 @@ const check = () => {
 
   if (uniqueBox.checked) x = unique(x);
 
+  changeTextBox((x.join("\n")));
+};
+
+const changeTextBox = (text) => {
+  console.log(text);
   outputBox.readonly = false;
-  outputBox.value = x.join("\n");
+  outputBox.value = text;
   outputBox.readonly = true;
+  outputBox.style.height = '1rem';
+  outputBox.style.height = outputBox.scrollHeight + 'px';
 };
 
 const add = (element) => {
@@ -60,3 +66,5 @@ const minus = (element) => {
     }
   }
 };
+
+changeTextBox("");
