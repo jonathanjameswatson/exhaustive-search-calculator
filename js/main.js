@@ -2,6 +2,7 @@ const tuple1Box = document.getElementById("tuple-1");
 const tupleType = document.getElementById("tuple-type");
 const outputBox = document.getElementById("output-box");
 const uniqueBox = document.getElementById("unique-box");
+const kBox = document.getElementById("k-box");
 let steps = document.getElementsByClassName("step");
 
 const keywords = {"AND":"&&", "OR":"||", "NOT":"!", "^":"**"};
@@ -15,8 +16,8 @@ const arrayEquals = (a1, a2 = []) => a1.length == a2.length && a1.every((element
 
 const check = () => {
   let tuple1 = tuple1Box.value.replace(/\s/g, "").split(",");
-  let length = tuple1.length;
-  let x = [...G.clone[tupleType.value](tuple1)];
+  let k = Number(kBox.value.replace(/n/, tuple1.length).replace(/\D/, ""));
+  let x = [...G.clone[tupleType.value](tuple1, k)];
 
   let y = [];
 
