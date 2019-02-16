@@ -17,7 +17,8 @@ const arrayEquals = (a1, a2 = []) => a1.length == a2.length && a1.every((element
 const check = () => {
   let tuple1 = tuple1Box.value.replace(/\s/g, "").split(",");
   let k = Number(kBox.value.replace(/n/, tuple1.length).replace(/\D/, ""));
-  let x = [...G.clone[tupleType.value](tuple1, k)];
+  let xGenerator = G.clone[tupleType.value](tuple1, k);
+  let x = [...xGenerator].slice();
 
   let y = [];
 
