@@ -4,7 +4,7 @@ const outputBox = document.getElementById("output-box");
 const uniqueBox = document.getElementById("unique-box");
 let steps = document.getElementsByClassName("step");
 
-const keywords = {"AND":"&&", "OR":"||", "NOT":"!"};
+const keywords = {"AND":"&&", "OR":"||", "NOT":"!", "^":"**"};
 
 const unique = list => list.slice().sort((a, b) => a > b)
 .reduce((accumulator, currentValue) => {
@@ -23,7 +23,7 @@ const check = () => {
   Array.from(steps).forEach((step) => {
     let command1 = step.getElementsByClassName("command-box")[0].value
     .replace(/AND|OR|NOT/g, input => keywords[input])
-    .replace(/[^-+*/()\d\&|!=><(?:Xn,)]/g, "")
+    .replace(/[^-+*/()\d\&|!=><.%(?:Xn,)]/g, "")
     .replace(/=/g, "==");
 
     x.forEach((xN) => {
@@ -43,7 +43,6 @@ const check = () => {
 };
 
 const changeTextBox = (text) => {
-  console.log(text);
   outputBox.readonly = false;
   outputBox.value = text;
   outputBox.readonly = true;
