@@ -150,6 +150,11 @@ input, textarea, select {
   outline: none;
   box-shadow: none;
   max-width: 100%;
+  transition: background-color 250ms;
+}
+
+input:hover, select:hover, textarea:hover {
+  background-color: #e2edfc;
 }
 
 #output-box {
@@ -157,6 +162,12 @@ input, textarea, select {
   overflow-y: hidden;
   resize: none;
 }
+
+input, select {
+  height: 1.5rem;
+}
+
+
 
 /* ==========================================================================
    Helper classes
