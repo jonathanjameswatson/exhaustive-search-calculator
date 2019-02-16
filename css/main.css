@@ -98,6 +98,7 @@ textarea {
    ========================================================================== */
 
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -148,8 +149,11 @@ input[type="button"], input[type="text"], textarea, select {
   border-radius: 0.2rem;
   border: solid 1px #888;
   outline: none;
+  -webkit-box-shadow: none;
   box-shadow: none;
   max-width: 100%;
+  -webkit-transition: background-color 250ms;
+  -o-transition: background-color 250ms;
   transition: background-color 250ms;
 }
 
