@@ -272,11 +272,10 @@ const G = {
 }
 
 G["A"] =  G.combination
-G["B"] = G.combination
-G["C"] = G.powerSet
-G["D"] = G.permutation
-G["E"] = G.baseN
-G["F"] = G.permutationCombination
+G["B"] = G.powerSet
+G["C"] = G.permutation
+G["D"] = G.baseN
+G["E"] = G.permutationCombination
 
 
 let clone = { clones: true }
@@ -288,11 +287,10 @@ clone.baseN = G.baseN
 clone.baseNAll = G.baseNAll
 clone.cartesian = G.cartesian
 clone["A"] =  G.combination
-clone["B"] = G.combination
-clone["C"] = G.powerSet
-clone["D"] = G.permutation
-clone["E"] = G.baseN
-clone["F"] = G.permutationCombination
+clone["B"] = G.powerSet
+clone["C"] = G.permutation
+clone["D"] = G.baseN
+clone["E"] = G.permutationCombination
 
 G.clone = clone
 
@@ -339,5 +337,3 @@ function swap(arr, i, j) {
 return G
 
 }))
-
-//ADD K-MULTISETS
