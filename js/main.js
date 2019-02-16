@@ -13,7 +13,7 @@ const nonCharacters = /\D/
 const acceptable = /[^-+*/()\d\&|!=><.%(?:Xn,)]/g
 const keywordsRegex = new RegExp(Object.keys(keywords).join("|"), "g");
 const xNs = /Xn,\d+/g
-
+const digits = /\d+/
 
 const unique = list => list.slice().sort((a, b) => a > b)
 .reduce((accumulator, currentValue) => {
@@ -36,7 +36,7 @@ const check = () => {
     .replace(acceptable, "")
 
     x.forEach((xN) => {
-      let command2 = command1.replace(xNs, input => (xN[input.match(/\d+/)[0]-1]));
+      let command2 = command1.replace(xNs, input => (xN[input.match(digits)[0]-1]));
       if (!eval(command2)) {
         y.push(xN);
       }
