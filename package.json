@@ -2,7 +2,7 @@
   "name": "exhaustive-search-calculator",
   "version": "1.0.0",
   "description": "A website for solving combinatorics problems",
-  "main": "index.js",
+  "main": "src/ks/main.js",
   "repository": "https://github.com/jonathanjameswatson/exhaustive-search-calculator.git",
   "author": "Jonathan J Watson <jonathanw12@outlook.com>",
   "license": "MIT",

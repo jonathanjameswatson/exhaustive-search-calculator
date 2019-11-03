@@ -7,7 +7,7 @@ import { HashedModuleIdsPlugin } from 'webpack';
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin';
 
 export default {
-  entry: './src/js/main.mjs',
+  entry: './src/js/main.js',
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].[hash].mjs',
