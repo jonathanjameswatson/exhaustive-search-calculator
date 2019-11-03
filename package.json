@@ -6,7 +6,12 @@
   "repository": "https://github.com/jonathanjameswatson/exhaustive-search-calculator.git",
   "author": "Jonathan J Watson <jonathanw12@outlook.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+  },
   "dependencies": {
+    "core-js": "^3.3.6",
     "generatorics": "^1.1.0",
     "modern-normalize": "^0.5.0"
   },
