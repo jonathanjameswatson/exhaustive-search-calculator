@@ -8,6 +8,7 @@ import WebpackCleanupPlugin from 'webpack-cleanup-plugin';
 
 export default {
   entry: './src/js/main.js',
+  // devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist/'),
     filename: '[name].[hash].mjs',
@@ -80,17 +81,7 @@ export default {
           'css-loader',
           'clean-css-loader',
         ],
-      }, /*
-      {
-        test: /\.(woff2|woff)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/',
-          },
-        }],
-      }, */
+      },
     ],
   },
   plugins: [
