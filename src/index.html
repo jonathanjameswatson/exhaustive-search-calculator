@@ -28,49 +28,67 @@
 
 <body>
   <header class="card">
-      <p> Exhaustive search calculator </p>
+      <h1>Exhaustive search calculator</h1>
   </header>
 
   <div class="card">
     <p>
-      Create set X of
-      <select id="tuple-type">
-        <option value="combination"> k-subsets </option>
-        <option value="powerSet"> subsets </option>
-        <option value="permutation"> k-permutations </option>
-        <option value="baseN"> k-tuples </option>
-        <option value="permutationCombination"> permutations of the set of subsets </option>
-      </select>
-      of the set
+      <label>
+        Create set X of
+        <select id="tuple-type">
+          <option value="combination">k-subsets</option>
+          <option value="powerSet">subsets</option>
+          <option value="permutation">k-permutations</option>
+          <option value="baseN">k-tuples</option>
+          <option value="permutationCombination">permutations of the set of subsets</option>
+        </select>
+      </label>
+
+      <label for="tuple-1" name="tuple-1">
+        of the set
+      </label>
     </p>
     <textarea id="tuple-1">1, 2, 3, 4, 5</textarea>
+
     <p>
-      k =
-      <input type="text" id="k-box" value="3">
+      <label>
+        k = <input
+          type="number"
+          id="k-box"
+          value="3"
+          min="1"
+          step="1"
+          onfocus="this.select()"
+        >
+        </input>
+      </label>
     </p>
   </div>
 
   <div>
     <div class="card step">
-      <input type="button" value="-" onclick="minus(this)" class="minus operator" hidden>
-      <input type="button" value="+" onclick="add(this)" class="add operator">
-      <p>
-        For each Xn, discard if
-      </p>
-      <textarea class="command-box">NOT(Xn,1 + Xn,2 + Xn,3 = 11)</textarea>
+      <input type="button" value="-" class="minus operator" hidden></input>
+      <input type="button" value="+" class="add operator"></input>
+      <label>
+        <p>
+          For each Xn, discard if
+        </p>
+        <textarea class="command-box">NOT(Xn,1 + Xn,2 + Xn,3 = 11)</textarea>
+      </label>
     </div>
   </div>
 
   <div class="card">
-    <p>
-      <input type="checkbox" id="unique-box">
-      Remove non-unique Xns
-    </p>
+    <label>
+      <p>
+        <input type="checkbox" id="unique-box"></input> Remove non-unique Xns
+      </p>
+    </label>
   </div>
 
   <div class="card">
     <p>
-      <input type="button" value="Check" class="check">
+      <input type="button" value="Check" class="check"></input>
     </p>
   </div>
 
