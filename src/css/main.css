@@ -65,6 +65,8 @@ input, textarea, select {
 
 input[type="checkbox"] {
   margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 input[type="button"]:hover {
