@@ -21,7 +21,13 @@ h1 {
   font-size: inherit;
   font-weight: normal;
   margin: 1rem;
+  display: inline-block;
 }
+
+#float {
+  float: right;
+}
+
 .card {
   background-color: white;
   border-radius: 0.4rem;
@@ -30,6 +36,7 @@ h1 {
   max-width: 50rem;
   height: auto;
   width: 100%;
+  overflow: auto;
 }
 
 textarea {
