@@ -16,7 +16,7 @@
     "modern-normalize": "^0.6.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.7",
+    "@babel/core": "^7.10.0",
     "@babel/preset-env": "^7.8.7",
     "@babel/register": "^7.8.6",
     "babel-loader": "^8.0.6",
