@@ -13,7 +13,7 @@
   "dependencies": {
     "core-js": "^3.6.4",
     "generatorics": "^1.1.0",
-    "modern-normalize": "^0.6.0"
+    "modern-normalize": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -24,9 +24,9 @@
     "css-loader": "^3.4.2",
     "extract-css-chunks-webpack-plugin": "^4.7.4",
     "friendly-errors-webpack-plugin": "^1.7.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^4.3.0",
     "push-dir": "^0.4.1",
-    "terser-webpack-plugin": "^2.3.5",
+    "terser-webpack-plugin": "^3.0.7",
     "webpack": "^4.42.0",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-cli": "^3.3.11"
