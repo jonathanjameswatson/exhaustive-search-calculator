@@ -17,6 +17,7 @@ A website for solving simple combinatorics problems using exhaustive searches
 
 - Generating k-subsets, subsets, k-permutations, k-tuples and permutations of the power set
 - Filtering tuples using JavaScript predicates
+- Mapping tuples using JavaScript expressions
 - Removing duplicates from a tuple of tuples
 
 ## Website

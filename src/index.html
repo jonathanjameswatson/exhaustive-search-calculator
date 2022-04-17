@@ -39,7 +39,7 @@
     <p>
       <label>
         Create tuple X of
-        <select id="tuple-type">
+        <select id="combinatorics-type">
           <option value="combination">k-subsets</option>
           <option value="powerSet">subsets</option>
           <option value="permutation">k-permutations</option>
@@ -48,11 +48,11 @@
         </select>
       </label>
 
-      <label for="tuple-1" name="tuple-1">
+      <label for="tuple-box" name="tuple-box">
         of the tuple
       </label>
     </p>
-    <textarea id="tuple-1">1, 2, 3, 4, 5</textarea>
+    <textarea id="tuple-box">1, 2, 3, 4, 5</textarea>
 
     <p>
       <label>
@@ -70,16 +70,31 @@
   </div>
 
   <div>
-    <div class="card step">
+    <div class="card step" data-type="filter">
       <div class="card-controls">
-        <button class="add">+</button>
-        <button class="minus" hidden>-</button>
+        <button class="add" title="Clone step">+</button>
+        <button class="minus" title="Remove step">-</button>
+        <button class="swap" title="Swap step type">⇄</button>
       </div>
       <label>
-        <p>
+        <p class="description">
           For each Xn, discard if
         </p>
         <textarea class="command-box">Xn[0] + Xn[1] + Xn[2] != 11</textarea>
+      </label>
+    </div>
+
+    <div class="card step" data-type="map">
+      <div class="card-controls">
+        <button class="add" title="Clone step">+</button>
+        <button class="minus" title="Remove step">-</button>
+        <button class="swap" title="Swap step type">⇄</button>
+      </div>
+      <label>
+        <p class="description">
+          Replace each Xn with
+        </p>
+        <textarea class="command-box">Xn.map((element, i) => element + i)</textarea>
       </label>
     </div>
   </div>
