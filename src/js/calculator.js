@@ -93,7 +93,7 @@ const minus = (element) => {
   if (steps.length > 1) {
     element.parentElement.remove();
     if (steps.length === 1) {
-      document.getElementsByClassName("minus")[0].hidden = true;
+      document.getElementsByClassName("minus")[0].setAttribute("hidden", "");
     }
   }
 };
@@ -102,7 +102,7 @@ const add = (element) => {
   const clone = element.parentElement.cloneNode(true);
   element.parentElement.parentElement.appendChild(clone);
   Array.from(document.getElementsByClassName("minus")).forEach((button) => {
-    button.setAttribute("hidden", false);
+    button.removeAttribute("hidden");
   });
 };
 
