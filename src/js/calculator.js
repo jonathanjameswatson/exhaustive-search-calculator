@@ -1,5 +1,4 @@
 import generatorics from "generatorics";
-import escapeStringRegexp from "escape-string-regexp";
 import saferEval from "./saferEval";
 
 const tuple1Box = document.getElementById("tuple-1");
@@ -8,24 +7,6 @@ const outputBox = document.getElementById("output-box");
 const uniqueBox = document.getElementById("unique-box");
 const kBox = document.getElementById("k-box");
 let steps = document.getElementsByClassName("step");
-
-const keywords = {
-  AND: "&&",
-  OR: "||",
-  NOT: "!",
-  "^": "**",
-  "=": "==",
-};
-
-const whiteSpace = /\s/g;
-const letterN = /n/;
-const nonCharacters = /\D/;
-const acceptable = /[^-+*/()d&|!=><.%(?:Xn,)0-9]/g;
-const keywordsRegex = new RegExp(
-  Object.keys(keywords).map(escapeStringRegexp).join("|"),
-  "g"
-);
-const xNs = /Xn,(\d+)/g;
 
 const arrayEquals = (a1, a2 = []) => {
   const lengthSame = a1.length === a2.length;
@@ -53,28 +34,20 @@ const changeTextBox = (text) => {
 };
 
 const check = () => {
-  const tuple1 = tuple1Box.value.replace(whiteSpace, "").split(",");
-  const k = Number(
-    kBox.value.replace(letterN, tuple1.length).replace(nonCharacters, "")
-  );
+  const tuple1 = tuple1Box.value.replace(/\s/g, "").split(",");
+  const k = parseInt(kBox.value.replace(/n/, tuple1.length).trim(), 10);
   const xGenerator = generatorics.clone[tupleType.value](tuple1, k);
   let x = [...xGenerator].slice();
 
   let y = [];
 
   Array.from(steps).forEach((step) => {
-    const command1 = step
-      .getElementsByClassName("command-box")[0]
-      .value.replace(keywordsRegex, (input) => keywords[input])
-      .replace(acceptable, "");
+    const predicateString = step.getElementsByClassName("command-box")[0].value;
 
     x.forEach((xN) => {
-      const command2 = command1.replace(
-        xNs,
-        (_match, number) => xN[parseInt(number, 10) - 1]
-      );
+      const variablesString = `var Xn = [${xN}]; var n = ${xN.length};`;
 
-      if (!saferEval(command2)) {
+      if (!saferEval(predicateString, variablesString)) {
         y.push(xN);
       }
     });
@@ -83,7 +56,9 @@ const check = () => {
     y = [];
   });
 
-  if (uniqueBox.checked) x = unique(x);
+  if (uniqueBox.checked) {
+    x = unique(x);
+  }
 
   changeTextBox(x.join("\n"));
 };
