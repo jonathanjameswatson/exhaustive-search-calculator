@@ -46,20 +46,26 @@ textarea {
   padding: 0.5rem;
   height: 4.8rem;
   line-height: 1.2;
+  resize: vertical;
 }
 
-.operator {
+.card-controls button {
   float: right;
   width: 2rem;
-  margin: 1rem;
+  margin: 1rem 0rem 1rem 0.5rem;
+  margin-right: 0rem;
   padding: 0;
 }
 
-.minus {
-  margin-left: 0;
+.card-controls button:first-child {
+  margin-right: 1rem;
 }
 
-input, textarea, select {
+.card-controls button:last-child {
+  margin-left: 1rem;
+}
+
+input, button, textarea, select {
   background-color: white;
   color: inherit;
   border-radius: 0.2rem;
@@ -76,8 +82,12 @@ input[type="checkbox"] {
   height: 1rem;
 }
 
-input[type="button"]:hover {
+button:hover {
   background-color: #e2edfc;
+}
+
+.run {
+  min-width: 3rem;
 }
 
 #output-box {
@@ -86,20 +96,11 @@ input[type="button"]:hover {
   resize: none;
 }
 
-input[type="button"], input[type="text"], select {
+input[type="text"], button, select {
   height: 1.5rem;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-
 input[type=number] {
-  -moz-appearance: textfield;
-  width: 2rem;
+  width: 4rem;
   text-align: center;
 }

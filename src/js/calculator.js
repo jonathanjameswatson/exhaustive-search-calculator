@@ -66,7 +66,7 @@ const check = () => {
 const minus = (element) => {
   steps = document.getElementsByClassName("step");
   if (steps.length > 1) {
-    element.parentElement.remove();
+    element.parentElement.parentElement.remove();
     if (steps.length === 1) {
       document.getElementsByClassName("minus")[0].setAttribute("hidden", "");
     }
@@ -74,8 +74,8 @@ const minus = (element) => {
 };
 
 const add = (element) => {
-  const clone = element.parentElement.cloneNode(true);
-  element.parentElement.parentElement.appendChild(clone);
+  const clone = element.parentElement.parentElement.cloneNode(true);
+  element.parentElement.parentElement.parentElement.appendChild(clone);
   Array.from(document.getElementsByClassName("minus")).forEach((button) => {
     button.removeAttribute("hidden");
   });
@@ -88,7 +88,7 @@ document.addEventListener("click", (event) => {
     add(event.target);
   } else if (event.target.matches(".minus")) {
     minus(event.target);
-  } else if (event.target.matches(".check")) {
+  } else if (event.target.matches(".run")) {
     check();
   }
 });

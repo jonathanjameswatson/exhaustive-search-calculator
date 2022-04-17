@@ -71,8 +71,10 @@
 
   <div>
     <div class="card step">
-      <input type="button" value="-" class="minus operator" hidden></input>
-      <input type="button" value="+" class="add operator"></input>
+      <div class="card-controls">
+        <button class="add">+</button>
+        <button class="minus" hidden>-</button>
+      </div>
       <label>
         <p>
           For each Xn, discard if
@@ -92,10 +94,9 @@
 
   <div class="card">
     <p>
-      <input type="button" value="Check" class="check"></input>
+      <button value="Check" class="run">Run</button>
     </p>
   </div>
-
 
   <div class="card">
     <label>
