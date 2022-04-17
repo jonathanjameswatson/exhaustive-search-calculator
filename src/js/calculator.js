@@ -1,5 +1,6 @@
 import generatorics from "generatorics";
 import escapeStringRegexp from "escape-string-regexp";
+import saferEval from "./saferEval";
 
 const tuple1Box = document.getElementById("tuple-1");
 const tupleType = document.getElementById("tuple-type");
@@ -73,8 +74,7 @@ const check = () => {
         (_match, number) => xN[parseInt(number, 10) - 1]
       );
 
-      /* eslint-disable-next-line no-eval */
-      if (!eval(command2)) {
+      if (!saferEval(command2)) {
         y.push(xN);
       }
     });
