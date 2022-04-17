@@ -1,4 +1,5 @@
 import generatorics from "generatorics";
+import escapeStringRegexp from "escape-string-regexp";
 
 const tuple1Box = document.getElementById("tuple-1");
 const tupleType = document.getElementById("tuple-type");
@@ -19,9 +20,11 @@ const whiteSpace = /\s/g;
 const letterN = /n/;
 const nonCharacters = /\D/;
 const acceptable = /[^-+*/()d&|!=><.%(?:Xn,)0-9]/g;
-const keywordsRegex = new RegExp(Object.keys(keywords).join("|"), "g");
-const xNs = /Xn,\d+/g;
-const digits = /\d+/;
+const keywordsRegex = new RegExp(
+  Object.keys(keywords).map(escapeStringRegexp).join("|"),
+  "g"
+);
+const xNs = /Xn,(\d+)/g;
 
 const arrayEquals = (a1, a2 = []) => {
   const lengthSame = a1.length === a2.length;
@@ -67,7 +70,7 @@ const check = () => {
     x.forEach((xN) => {
       const command2 = command1.replace(
         xNs,
-        (input) => xN[input.match(digits)[0] - 1]
+        (_match, number) => xN[parseInt(number, 10) - 1]
       );
 
       /* eslint-disable-next-line no-eval */
