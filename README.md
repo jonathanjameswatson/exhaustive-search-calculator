@@ -8,7 +8,7 @@ A website for solving simple combinatorics problems using exhaustive searches
 
 ## Development
 
-- Clone repository with `git clone
+- Clone repository with `git clone https://github.com/jonathanjameswatson/exhaustive-search-calculator.git`
 - Install dependencies with `yarn install`
 - Run development server on `http://localhost:8080` with `yarn dev`
 - Build for production into `dist` with `yarn build`
