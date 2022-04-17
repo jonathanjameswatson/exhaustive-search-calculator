@@ -1,5 +1,7 @@
 import generatorics from "generatorics";
 import saferEval from "./saferEval";
+import { filterGenerator } from "./generatorHelpers";
+import removeDuplicateArrays from "./removeDuplicateArrays";
 
 const tuple1Box = document.getElementById("tuple-1");
 const tupleType = document.getElementById("tuple-type");
@@ -7,23 +9,6 @@ const outputBox = document.getElementById("output-box");
 const uniqueBox = document.getElementById("unique-box");
 const kBox = document.getElementById("k-box");
 let steps = document.getElementsByClassName("step");
-
-const arrayEquals = (a1, a2 = []) => {
-  const lengthSame = a1.length === a2.length;
-  const everySame = a1.every((element, i) => element === a2[i]);
-  return lengthSame && everySame;
-};
-
-const unique = (list) =>
-  list
-    .slice()
-    .sort((a, b) => a > b)
-    .reduce((accumulator, currentValue) => {
-      if (!arrayEquals(currentValue, accumulator.slice(-1)[0])) {
-        accumulator.push(currentValue);
-      }
-      return accumulator;
-    }, []);
 
 const changeTextBox = (text) => {
   outputBox.readonly = false;
@@ -36,31 +21,22 @@ const changeTextBox = (text) => {
 const check = () => {
   const tuple1 = tuple1Box.value.replace(/\s/g, "").split(",");
   const k = parseInt(kBox.value.replace(/n/, tuple1.length).trim(), 10);
-  const xGenerator = generatorics.clone[tupleType.value](tuple1, k);
-  let x = [...xGenerator].slice();
 
-  let y = [];
-
-  Array.from(steps).forEach((step) => {
+  const x = Array.from(steps).reduce((currentGenerator, step) => {
     const predicateString = step.getElementsByClassName("command-box")[0].value;
-
-    x.forEach((xN) => {
-      const variablesString = `var Xn = [${xN}]; var n = ${xN.length};`;
-
-      if (!saferEval(predicateString, variablesString)) {
-        y.push(xN);
-      }
+    return filterGenerator(currentGenerator, (Xn) => {
+      const variablesString = `var Xn = [${Xn}]; var n = ${Xn.length};`;
+      return !saferEval(predicateString, variablesString);
     });
+  }, generatorics.clone[tupleType.value](tuple1, k));
 
-    x = y;
-    y = [];
-  });
+  const evaluatedX = [...x];
 
   if (uniqueBox.checked) {
-    x = unique(x);
+    removeDuplicateArrays(evaluatedX);
   }
 
-  changeTextBox(x.join("\n"));
+  changeTextBox(evaluatedX.join("\n"));
 };
 
 const minus = (element) => {
