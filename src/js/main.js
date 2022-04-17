@@ -1,4 +1,4 @@
-import 'modern-normalize/modern-normalize.css';
-import '../css/main.css';
+import "modern-normalize/modern-normalize.css";
+import "../css/main.css";
 
-import './calculator';
+import "./calculator";

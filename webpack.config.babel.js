@@ -1,18 +1,19 @@
-import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ExtractCssChunks from 'extract-css-chunks-webpack-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin';
-import { HashedModuleIdsPlugin } from 'webpack';
-import WebpackCleanupPlugin from 'webpack-cleanup-plugin';
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import ESLintWebpackPlugin from "eslint-webpack-plugin";
 
 export default {
-  entry: './src/js/main.js',
-  // devtool: 'source-map',
+  entry: "./src/js/main.js",
+  devtool: process.env.WEBPACK_SERVE ? "eval-cheap-source-map" : false,
   output: {
-    path: path.resolve(__dirname, 'dist/'),
-    filename: '[name].[hash].mjs',
-    chunkFilename: '[name].[chunkhash].chunk.mjs',
+    filename: "[name].[contenthash].mjs",
+    chunkFilename: "[name].[chunkhash].chunk.mjs",
+    clean: true,
+  },
+  devServer: {
+    hot: true,
+    port: 8080,
   },
   optimization: {
     minimize: true,
@@ -38,31 +39,8 @@ export default {
           },
         },
         parallel: true,
-        sourceMap: false,
-        cache: true,
       }),
     ],
-    splitChunks: {
-      chunks: 'all',
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true,
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-        main: {
-          chunks: 'all',
-          minChunks: 2,
-          reuseExistingChunk: true,
-          enforce: true,
-        },
-      },
-    },
     runtimeChunk: true,
   },
   module: {
@@ -70,23 +48,17 @@ export default {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [
-          'babel-loader?cacheDirectory=true',
-        ],
+        use: ["babel-loader?cacheDirectory=true"],
       },
       {
         test: /\.css$/,
-        use: [
-          ExtractCssChunks.loader,
-          'css-loader',
-          'clean-css-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: "./src/index.html",
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -101,18 +73,7 @@ export default {
         minifyURLs: true,
       },
     }),
-    new ExtractCssChunks(
-      {
-        filename: '[name].css',
-        chunkFilename: '[id].css',
-      },
-    ),
-    new HashedModuleIdsPlugin({
-      hashFunction: 'sha256',
-      hashDigest: 'hex',
-      hashDigestLength: 20,
-    }),
-    new FriendlyErrorsWebpackPlugin(),
-    new WebpackCleanupPlugin(),
+    new MiniCssExtractPlugin(),
+    new ESLintWebpackPlugin(),
   ],
 };
