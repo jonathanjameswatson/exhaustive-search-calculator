@@ -2,10 +2,10 @@
   "name": "exhaustive-search-calculator",
   "version": "1.0.0",
   "description": "A website for solving combinatorics problems",
-  "main": "src/ks/main.js",
-  "repository": "https://github.com/jonathanjameswatson/exhaustive-search-calculator.git",
-  "author": "Jonathan J Watson <jonathanw12@outlook.com>",
+  "homepage": "https://jonathanjameswatson.com/exhaustive-search-calculator",
   "license": "MIT",
+  "author": "Jonathan Watson",
+  "repository": "github:jonathanjameswatson/exhaustive-search-calculator",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development",
@@ -37,5 +37,6 @@
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"
-  }
+  },
+  "private": true
 }
